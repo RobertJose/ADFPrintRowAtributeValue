@@ -23,6 +23,27 @@ then in the viewObject row seccion replace 'oracle.jbo.server.ViewRowImpl' for y
         return sb.toString();
     }
     
+    Or 
+    
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        String attributeValue = "" ;
+        
+        for (int i = 0; i < getAttributeValues().length; i++) {
+            
+            byte attrKind = getViewDef().getAttributeDef(i).getAttributeKind(); 
+           
+            if(attrKind != AttributeDef.ATTR_ROWSET && attrKind != AttributeDef.ATTR_ASSOCIATED_ROWITERATOR  ){
+                
+               attributeValue =  (getAttributeValues()[i] == null ? null : getAttributeValues()[i].toString());
+               sb.append("[" + getViewDef().getAttributeDef(i).getName() + " = " + attributeValue + "]");
+           }
+        }
+        return sb.toString();
+    }
+    
   Result : 
     When printing the row.toString()
     have the following result : [DepartmentId = 876][DepartmentName = robert][ManagerId = 100][LocationId = 1700]

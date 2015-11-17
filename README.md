@@ -12,19 +12,7 @@ then in the viewObject row seccion replace 'oracle.jbo.server.ViewRowImpl' for y
 
 3- In the custom base class  must make Override the toString() method with the following code:
 
-    @Override
-    public String toString() {
 
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < getAttributeValues().length; i++) {
-            sb.append("[" + getAttributeNames()[i].toString() + " = " + getAttributeValues()[i].toString() + "]");
-        }
-        return sb.toString();
-    }
-    
-    Or 
-    
     @Override
     public String toString() {
 
